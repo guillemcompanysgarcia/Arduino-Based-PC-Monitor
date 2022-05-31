@@ -1,14 +1,14 @@
 #include <UTFTGLUE.h>              //use GLUE class and constructor
 #include <string.h>
-UTFTGLUE myGLCD(0,A2,A1,A3,A4,A0); //all dummy args
-#define UNIT 200
-#
+UTFTGLUE myGLCD(0,A2,A1,A3,A4,A0); //initiate screen
 
 void setup()
 {
   randomSeed(analogRead(0));
   Serial.begin(115200);
-  Serial.setTimeout(1);  
+  Serial.setTimeout(1);
+  
+  //Print the basic layout of the Display
   myGLCD.InitLCD(0);
   myGLCD.setFont(BigFont);
   
@@ -29,8 +29,10 @@ void setup()
   
   myGLCD.print("GPU LOAD: ", LEFT, 30+135*3);
   myGLCD.print("%", 300, 30+135*3);
-  
+
   myGLCD.setFont(SevenSegNumFont);
+  
+  //End of the basic layout
 }
 
 void loop()
@@ -40,30 +42,30 @@ void loop()
   char str[20];
   char s[2] = ",";
   char *token;
-  int aux[4], sum=0;
+  int aux[4];
 
-while (!Serial.available());
+while (!Serial.available()); //Get data from the PC
   x = Serial.readString();
   x.toCharArray(str,20);
-  token = strtok(str, s);
+  token = strtok(str, s); //Conversions to split the string and get the data of each field.
   int i=0;
   while( token != NULL ) {
   aux[i]=atoi(token);
   i++;
-  sum=sum+aux;
   token = strtok(NULL, s); 
  }
  
  
   String cputemp, cpuload, gputemp, gpuload;
   String bcputemp, bcpuload, bgputemp, bgpuload;
+  
   bcputemp=cputemp;
   cputemp=String(aux[0]);
-  if( bcputemp != cputemp){
-    if(aux[0]<10){
+  if( bcputemp != cputemp){ //If the new read is different do a new print
+    if(aux[0]<10){ //Due to limitations of my screen I can't afford to clear the string so I print a "0" if the temp is lower than 10
       cputemp="0"+cputemp;
     }
-    if(aux[0]==100){
+    if(aux[0]==100){ //Same but for 3 digits
       cputemp="99";
     }
     myGLCD.print(cputemp, 200, 30-10);
