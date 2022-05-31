@@ -10,7 +10,7 @@ Then move the launch_bat.vbs script to the Start folder (Windows+R and type shel
 
 To power off the screen when your PC is off change bios settings and enable (S4+S5 Erp).
 
-Result: 
+Result: See Issues tab!
 If you have any concerns or doubts about this project don't mind to message me.
 
 Thanks!
