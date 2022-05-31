@@ -8,6 +8,7 @@ To run the script (script.pyw) you need to create a batch script to call it( Run
 To run the script in the Startup of your PC, modify OpenHardwareMonitor to open silently at Startup.
 Then move the launch_bat.vbs script to the Start folder (Windows+R and type shell:startup).
 
+To power off the screen when your PC is off change bios settings and enable (S4+S5 Erp).
 If you have any concerns or doubts about this project don't mind to message me.
 
 Thanks!
