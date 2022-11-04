@@ -21,7 +21,7 @@ while 1:
 
       for sensor in temperature_infos: #Search for the CPU temperature. Due to lack of OpenHardwareMonitor limitation with 11th Intel Family I only get the core 0 temp.
         #It is posible to do the mean of all your processor temps. 
-          if sensor.SensorType==u'Temperature' and sensor.Parent==u'/lpc/nct6798d' and sensor.Name==u'Temperature #1':
+          if sensor.SensorType==u'Temperature' and sensor.Name==u'CPU Package':
               value=sensor.Value
     
       gpu = GPUtil.getGPUs()[0]
