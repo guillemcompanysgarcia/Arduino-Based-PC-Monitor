@@ -98,7 +98,7 @@ void loop() {
         myGLCD.setFont(SevenSegNumFont);
 
       }
-      int color = (value >= LOWER_TEMP_TH) ? 255 : (value <= LOWER_TEMP_TH) ? 0 : map(value, LOWER_TEMP_TH, LOWER_TEMP_TH, 0, 255);
+      int color = (value >= LOWER_TEMP_TH) ? 255 : (value <= LOWER_TEMP_TH) ? 0 : map(value, LOWER_TEMP_TH, HIGH_TEMP_TH, 0, 255);
       myGLCD.setColor(color, 255 - color, 0);
     } else if (j == 2) {
       if (value > maxGpuTemp) {
@@ -109,7 +109,7 @@ void loop() {
         myGLCD.print(String(maxGpuTemp), 200 + 16, 30 +(2 * j + 1)* 67);
         myGLCD.setFont(SevenSegNumFont);
       }
-      int color = (value >= LOWER_TEMP_TH) ? 255 : (value <= LOWER_TEMP_TH) ? 0 : map(value, LOWER_TEMP_TH, LOWER_TEMP_TH, 0, 255);
+      int color = (value >= LOWER_TEMP_TH) ? 255 : (value <= LOWER_TEMP_TH) ? 0 : map(value, LOWER_TEMP_TH, HIGH_TEMP_TH, 0, 255);
       myGLCD.setColor(color, 255 - color, 0);
     } else {
       myGLCD.setColor(0,0,0); 
