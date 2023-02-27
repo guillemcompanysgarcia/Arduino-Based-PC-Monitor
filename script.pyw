@@ -19,12 +19,6 @@ for p in ports:
 # Print the Arduino port
 print('Detected Arduino port:', arduino_port)
 
-ser = serial.Serial(arduino_port)
-# do some serial communication
-ser.close()  # release the port
-
-
-
 arduino = serial.Serial(port=arduino_port, baudrate=115200, timeout=.1)
 w = wmi.WMI(namespace="root\OpenHardwareMonitor")
 
