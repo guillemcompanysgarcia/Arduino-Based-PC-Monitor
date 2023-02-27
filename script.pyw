@@ -19,11 +19,6 @@ for p in ports:
 # Print the Arduino port
 print('Detected Arduino port:', arduino_port)
 
-ser = serial.Serial(arduino_port)
-# do some serial communication
-ser.close()  # release the port
-
-
 
 arduino = serial.Serial(port=arduino_port, baudrate=115200, timeout=.1)
 w = wmi.WMI(namespace="root\OpenHardwareMonitor")
@@ -38,10 +33,10 @@ while 1:
 
 	temperature_infos = w.Sensor()
 	valor=0
-	contador=0
 	
 	for sensor in temperature_infos:
-		if sensor.SensorType==u'Temperature' and sensor.Name==u'Temperature #1' :
+		
+		if sensor.SensorType==u'Temperature' and sensor.Name=='CPU Package':
 			valor=sensor.Value
 	
 	gpu = GPUtil.getGPUs()[0]
@@ -53,3 +48,4 @@ while 1:
 	finalString = A + "," + B + "," + C + "," + D + "\n"
 	print(finalString)
 	value = write_read(finalString)
+	time.sleep(0.5)
